@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>اللواء 54 عمالقة</title>
+  <style>
+    :root{
+      --green:#1e7a34;
+      --green-dark:#165b28;
+      --green-soft:#dfeee4;
+      --bg:#eef1ef;
+      --panel:#f6f7f6;
+      --card:#ffffff;
+      --muted:#7c7c7c;
+      --line:#dfe5df;
+      --red:#d64a4a;
+      --red-soft:#fbe3e3;
+      --yellow:#f3c768;
+      --yellow-soft:#fdf3d9;
+      --blue:#2d7be8;
+      --blue-soft:#eaf2ff;
+      --text:#1d1d1d;
+      --shadow:0 12px 28px rgba(15, 40, 20, 0.16);
+      --radius:18px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{margin:0;padding:0;font-family:Tahoma,Arial,sans-serif;background:var(--bg);color:var(--text);height:100%}
+    body{overscroll-behavior:none}
+    button,input,select{font:inherit}
+    a{text-decoration:none;color:inherit}
+    .hidden{display:none !important}
+    .app{
+      min-height:100vh;
+      display:flex;
+      flex-direction:column;
+    }
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:12px 18px;background:#f2f2f2;border-bottom:1px solid rgba(0,0,0,.08);
+      position:sticky;top:0;z-index:20;
+    }
+    .top-left{display:flex;align-items:center;gap:12px}
+    .bell{
+      width:30px;height:30px;border-radius:12px;background:#1d1d1d;color:#fff;
+      display:flex;align-items:center;justify-content:center;font-size:16px;position:relative;
+    }
+    .bell::after{
+      content:""; position:absolute; right:6px; top:5px; width:6px; height:6px; border-radius:50%;
+      background:#ff4d4d; border:2px solid #1d1d1d;
+    }
+    .brand-block{
+      display:flex;align-items:center;gap:12px;flex:1;justify-content:center;
+    }
+    .brand-logo{
+      width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,#d6b166,#9a6b1b);
+      border:2px solid #1d1d1d; position:relative; overflow:hidden;
+    }
+    .brand-logo::before{
+      content:""; position:absolute; inset:8px; border:2px solid rgba(0,0,0,.65); border-radius:50%;
+    }
+    .brand-logo::after{
+      content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+      width:12px;height:12px;border-radius:50%;background:#1d1d1d;
+    }
+    .brand-text{
+      font-weight:700;font-size:1.15rem;color:#1f1f1f;
+      letter-spacing:.2px;white-space:nowrap;
+    }
+    .top-right{display:flex;align-items:center;gap:10px;}
+    .user-chip{
+      display:flex;align-items:center;gap:8px;padding:6px 10px;border-radius:12px;background:rgba(30,122,52,.07);
+      font-size:.82rem;color:#1e3f2a;font-weight:600;
+    }
+    .avatar{
+      width:30px;height:30px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;font-size:13px;font-weight:700;
+    }
+    .hamburger{
+      width:40px;height:40px;border:1px solid var(--line);border-radius:10px;background:#fff;display:grid;place-items:center;
+      font-size:1.2rem;color:#333;
+    }
+
+    .page-shell{
+      flex:1; display:flex; flex-direction:column; padding:16px 14px 88px;
+      max-width:1200px; width:100%; margin:0 auto;
+    }
+
+    .login-screen{
+      min-height:100vh; display:grid; place-items:center; background:linear-gradient(180deg,#f3f3f3,#e7e9e7);
+      padding:24px;
+    }
+    .login-card{
+      width:min(430px,92vw); background:rgba(255,255,255,.55); border:1px solid rgba(0,0,0,.06);
+      border-radius:26px; box-shadow:var(--shadow); padding:26px 24px 18px;
+    }
+    .login-header{
+      text-align:center; margin-bottom:18px; font-size:2rem; font-weight:800; color:var(--green-dark);
+    }
+    .login-field{display:flex;flex-direction:column;gap:8px;margin-bottom:14px}
+    .login-field label{font-weight:700;color:#2c2c2c}
+    .login-field input{
+      background:#fff;border:1px solid var(--line);border-radius:12px;padding:14px 14px;height:48px;
+      font-size:1rem;outline:none;
+    }
+    .login-btn{
+      width:100%;height:52px;border:none;border-radius:12px;background:var(--green);color:#fff;font-size:1.1rem;font-weight:700;cursor:pointer;
+      box-shadow:0 12px 20px rgba(30,122,52,.22);
+    }
+
+    .main-screen{display:none}
+    .main-screen.active{display:block}
+
+    .summary-row{
+      display:flex;align-items:center;justify-content:space-between;gap:8px;
+      margin:12px 0 10px;
+    }
+    .summary-block{
+      display:flex;align-items:center;gap:10px;padding:6px 10px;border-radius:12px;background:var(--green-soft);border:1px solid rgba(30,122,52,.12);
+      color:var(--green-dark);font-weight:700;font-size:.9rem;
+    }
+    .summary-block .dot{width:10px;height:10px;border-radius:50%;background:var(--green);display:inline-block}
+    .tabs{
+      display:flex;align-items:center;justify-content:flex-end;gap:12px;margin:6px 0 10px;
+    }
+    .tab{
+      padding:8px 12px;border-radius:10px;background:transparent;border:1px solid transparent;color:#2b2b2b;font-weight:700;cursor:pointer;
+    }
+    .tab.active{
+      background:#eaf5ee;border:1px solid rgba(30,122,52,.25);color:var(--green-dark);box-shadow:inset 0 0 0 1px rgba(30,122,52,.05)
+    }
+
+    .cards{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;margin-top:10px;
+    }
+    .stat-card{
+      background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px;
+      box-shadow:0 8px 18px rgba(10,20,12,.04);display:flex;flex-direction:column;gap:10px;
+    }
+    .stat-top{
+      display:flex;align-items:center;justify-content:space-between;color:#3e3e3e;font-size:.85rem;font-weight:700;
+    }
+    .stat-value{
+      font-size:2rem;font-weight:800;letter-spacing:-.04em;color:#1c1c1c;
+    }
+    .stat-sub{font-size:.82rem;color:#4a4a4a}
+    .status-flag{
+      display:inline-block;padding:4px 8px;border-radius:8px;font-size:.75rem;font-weight:700;
+    }
+    .status-green{background:#ddf5e5;color:#176a34}
+    .status-red{background:#fde2e2;color:#a92f2f}
+    .status-yellow{background:#fff4d8;color:#8a5a10}
+    .status-blue{background:#e4efff;color:#295db3}
+
+    .section-card{
+      background:var(--card);border:1px solid var(--line);border-radius:18px;padding:18px;
+      box-shadow:0 10px 22px rgba(0,0,0,.03);
+      margin-top:18px;
+    }
+    .section-head{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px;
+    }
+    .section-title{
+      font-size:1.1rem;font-weight:800;color:#1d1d1d;
+    }
+    .muted{color:var(--muted)}
+
+    .filters{
+      display:flex;gap:10px;align-items:center;flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .input, .select, .date{
+      background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px 12px;color:#333;min-height:42px;
+    }
+    .search{min-width:220px;flex:1}
+    .btn{
+      border:none;border-radius:10px;padding:10px 16px;cursor:pointer;font-weight:700;transition:.2s ease;
+    }
+    .btn-primary{background:var(--green);color:#fff}
+    .btn-danger{background:#d94e4e;color:#fff}
+    .btn-outline{background:#fff;border:1px solid var(--line);color:#2d2d2d}
+    .btn-warning{background:#f4c652;color:#3b2b05}
+
+    .attendance-grid{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px;
+    }
+    .person-card{
+      background:#fff;border:1px solid var(--line);border-radius:16px;padding:12px; display:flex; flex-direction:column; gap:8px;
+    }
+    .person-top{
+      display:flex;align-items:center;justify-content:space-between;gap:8px;
+    }
+    .person-name{font-weight:800}
+    .person-meta{font-size:.83rem;color:#666}
+    .status-pill{
+      padding:4px 8px;border-radius:999px;font-size:.72rem;font-weight:700;
+    }
+    .present{background:#def7e9;color:#166b3a}
+    .jail{background:#dfeaff;color:#2757ae}
+    .dead{background:#ececec;color:#5d5d5d}
+    .absent{background:#ffe1dd;color:#a14a3a}
+    .road{background:#fff0d9;color:#8a6110}
+
+    .list-table{
+      width:100%;border-collapse:collapse;overflow:hidden;border-radius:12px;overflow:hidden;
+    }
+    .list-table th,.list-table td{
+      border-bottom:1px solid var(--line);padding:12px 10px;text-align:right;
+    }
+    .list-table th{background:#f5f7f5;font-weight:800}
+    .list-table tr:last-child td{border-bottom:none}
+    .badge{
+      display:inline-flex;align-items:center;justify-content:center;padding:5px 8px;border-radius:8px;font-size:.75rem;font-weight:700;
+    }
+    .badge.good{background:#def7e9;color:#166b3a}
+    .badge.warn{background:#fff1d7;color:#8a6110}
+    .badge.bad{background:#ffe3e3;color:#9a2d2d}
+    .badge.info{background:#e7efff;color:#2f5bbd}
+
+    .modal-overlay{
+      position:fixed;inset:0;background:rgba(10,15,11,.42);display:none;align-items:center;justify-content:center;padding:24px;z-index:30;
+    }
+    .modal-overlay.open{display:flex}
+    .modal{
+      width:min(560px,90vw);background:#fff;border-radius:20px;box-shadow:var(--shadow);border:1px solid rgba(0,0,0,.06);padding:18px 18px 14px;
+    }
+    .modal-header{
+      display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;
+    }
+    .modal-title{font-size:1.2rem;font-weight:800}
+    .close-x{
+      width:34px;height:34px;border-radius:50%;border:none;background:#f0f0f0;color:#222;font-size:1.3rem;cursor:pointer;
+    }
+    .modal-grid{
+      display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:start;
+    }
+    .field{display:flex;flex-direction:column;gap:8px}
+    .field label{font-weight:700;color:#2d2d2d}
+    .field input,.field select{
+      width:100%;padding:11px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;min-height:42px;
+    }
+    .field.full{grid-column:1 / -1}
+    .modal-actions{display:flex;justify-content:flex-end;gap:10px;padding-top:14px;margin-top:12px;border-top:1px solid var(--line)}
+
+    .drawer{
+      position:fixed;left:0;right:0;bottom:0;background:#f2f2f2;border-top:1px solid rgba(0,0,0,.08);padding:10px 12px 16px;display:flex;justify-content:space-between;gap:12px;z-index:20;
+    }
+    .nav-btn{
+      flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:10px 8px;border-radius:12px;
+      color:#4d4d4d;font-weight:700;cursor:pointer;border:1px solid transparent;background:transparent;
+    }
+    .nav-btn.active{background:#dfeee6;color:var(--green-dark);border-color:rgba(30,122,52,.08)}
+    .nav-icon{font-size:1.15rem}
+
+    .mini-alert{
+      background:var(--blue-soft);border:1px solid rgba(45,123,232,.18);border-radius:12px;
+      padding:12px 14px;color:#2357bb;font-weight:700;
+    }
+    .warning-box{
+      background:var(--red-soft);border:1px solid rgba(214,74,74,.2);border-radius:12px;padding:12px;color:#953535;font-weight:700;
+    }
+
+    .draft-list{
+      display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-top:10px;
+    }
+    .draft-card{
+      border-radius:16px;padding:16px;border:1px solid var(--line);background:#fff;display:flex;flex-direction:column;gap:8px;
+    }
+    .draft-card.blue{background:linear-gradient(180deg,#edf7ff,#fff)}
+    .draft-card.green{background:linear-gradient(180deg,#edfff2,#fff)}
+    .draft-card.orange{background:linear-gradient(180deg,#fff4e8,#fff)}
+    .draft-head{display:flex;justify-content:space-between;align-items:center}
+    .draft-actions{display:flex;gap:8px}
+    .tiny-btn{
+      border:none;border-radius:8px;padding:7px 10px;cursor:pointer;font-weight:700;background:#f0f3f0;
+    }
+
+    @media (max-width: 600px){
+      .page-shell{padding:10px 12px 90px}
+      .brand-text{font-size:1rem}
+      .topbar{padding:10px 12px}
+      .user-chip{display:none}
+      .login-card{padding:18px 16px}
+      .modal-grid{grid-template-columns:1fr}
+      .section-head{align-items:flex-start}
+      .filters{display:grid;grid-template-columns:1fr 1fr}
+      .search{grid-column:1 / -1}
+      .drawer{padding-bottom:12px}
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="app">
+    <div id="loginScreen" class="login-screen">
+      <div class="login-card">
+        <div class="login-header">اللواء 54 عمالقة</div>
+        <div class="login-field">
+          <label for="username">اسم المستخدم</label>
+          <input id="username" type="text" value="admin" />
+        </div>
+        <div class="login-field">
+          <label for="password">كلمة المرور</label>
+          <input id="password" type="password" value="1234" />
+        </div>
+        <button class="login-btn" id="loginBtn">تسجيل الدخول</button>
+      </div>
+    </div>
+
+    <div id="mainScreen" class="main-screen">
+      <div class="topbar">
+        <div class="top-left">
+          <div class="bell">🔔</div>
+        </div>
+
+        <div class="brand-block">
+          <div class="brand-logo"></div>
+          <div class="brand-text">اللواء 54 عمالقة</div>
+        </div>
+
+        <div class="top-right">
+          <div class="user-chip">
+            <div class="avatar" id="topAvatar">A</div>
+            <div>
+              <div id="topUserName">المدير</div>
+              <small id="topUserRole">قائد اللواء</small>
+            </div>
+          </div>
+          <div class="hamburger">☰</div>
+        </div>
+      </div>
+
+      <div class="page-shell">
+        <div class="summary-row">
+          <div class="summary-block"><span class="dot"></span> لوحة القيادة</div>
+          <div class="muted">آخر تحديث اليوم</div>
+        </div>
+
+        <div class="tabs" id="mainTabs">
+          <button class="tab active" data-page="dashboard">الرئيسية</button>
+          <button class="tab" data-page="attendance">التمام</button>
+          <button class="tab" data-page="leaves">الإجازات</button>
+          <button class="tab" data-page="personnel">الأفراد</button>
+          <button class="tab" data-page="cashier">الصرف</button>
+          <button class="tab" data-page="drafts">المسودات</button>
+        </div>
+
+        <section id="page-dashboard" class="page-panel">
+          <div class="cards" id="dashboardCards"></div>
+
+          <div class="section-card">
+            <div class="section-head">
+              <div class="section-title">آخر النشاطات</div>
+              <button class="btn btn-primary" id="previewTodayBtn">معاينة تقرير اليوم</button>
+            </div>
+            <table class="list-table">
+              <thead>
+                <tr>
+                  <th>الحدث</th>
+                  <th>الوقت</th>
+                  <th>المستخدم</th>
+                </tr>
+              </thead>
+              <tbody id="activityTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="page-attendance" class="page-panel hidden">
+          <div class="section-card">
+            <div class="section-head">
+              <div class="section-title">التمام اليومي</div>
+              <button class="btn btn-outline">إخفاء الإحصائيات</button>
+            </div>
+
+            <div class="filters">
+              <input class="input search" id="attendanceSearch" placeholder="بحث بالاسم أو الرقم العسكري" />
+              <select class="select" id="attendanceSquadFilter">
+                <option value="all">كل السرايا</option>
+              </select>
+              <input class="date" id="attendanceDate" type="date" />
+              <button class="btn btn-primary" id="markAllPresent">تحديد الحضور</button>
+            </div>
+
+            <div class="tabs">
+              <button class="tab active" data-att-tab="all">كل القوة</button>
+              <button class="tab" data-att-tab="present">الحضور فقط</button>
+              <button class="tab" data-att-tab="history">سجل التمام</button>
+            </div>
+
+            <div id="attendanceContent"></div>
+          </div>
+        </section>
+
+        <section id="page-leaves" class="page-panel hidden">
+          <div class="section-card">
+            <div class="section-head">
+              <div class="section-title">إدارة الإجازات</div>
+              <button class="btn btn-primary" id="newLeaveBtn">منح إجازة جديدة</button>
+            </div>
+
+            <div class="filters">
+              <input class="input search" id="leaveSearch" placeholder="بحث" />
+              <select class="select" id="leaveStatusFilter">
+                <option value="all">كل الحالات</option>
+                <option value="active">الإجازات الحالية</option>
+                <option value="ended">المنتهية</option>
+              </select>
+            </div>
+
+            <div id="leavesTable"></div>
+          </div>
+        </section>
+
+        <section id="page-personnel" class="page-panel hidden">
+          <div class="section-card">
+            <div class="section-head">
+              <div class="section-title">إدارة الأفراد (السجل العام)</div>
+              <button class="btn btn-primary" id="newPersonBtn">+ إضافة فرد جديد</button>
+            </div>
+            <div class="filters">
+              <input class="input search" id="personSearch" placeholder="بحث" />
+              <select class="select" id="teamFilter">
+                <option value="all">كل الكتائب</option>
+              </select>
+              <select class="select" id="squadFilter">
+                <option value="all">كل السرايا</option>
+              </select>
+            </div>
+            <div id="personnelGrid"></div>
+          </div>
+        </section>
+
+        <section id="page-cashier" class="page-panel hidden">
+          <div class="section-card">
+            <div class="section-head">
+              <div class="section-title">الصرف</div>
+              <div class="status-flag status-red">تم إغلاق الصندوق</div>
+            </div>
+
+            <div class="cards">
+              <div class="stat-card">
+                <div class="stat-top"><span>نسبة الإنجاز</span><span class="badge info">%</span></div>
+                <div class="stat-value" id="cashRate">0%</div>
+                <div class="stat-sub">المستحقين / المستلمون</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-top"><span>عدد المستحقين</span></div>
+                <div class="stat-value" id="cashTotal">0</div>
+                <div class="stat-sub">أفراد مستحقون</div>
+              </div>
+              <div class="stat-card">
+                <div class="stat-top"><span>عدد المستلمين</span></div>
+                <div class="stat-value" id="cashReceived">0</div>
+                <div class="stat-sub">تحديث فوري</div>
+              </div>
+            </div>
+
+            <div class="warning-box" style="margin-top:16px;">
+              تم إغلاق الصندوق بناءً على الوقت المحدد من الإدارة المالية
+            </div>
+
+            <div class="tabs" style="justify-content:flex-start;">
+              <button class="tab active" data-cash-tab="eligible">المستحقين</button>
+              <button class="tab" data-cash-tab="attendance">سجل التمام</button>
+            </div>
+
+            <div id="cashierContent"></div>
+          </div>
+        </section>
+
+        <section id="page-drafts" class="page-panel hidden">
+          <div class="section-card">
+            <div class="section-head">
+              <div class="section-title">المسودات السفرية</div>
+            </div>
+
+            <div class="filters">
+              <input class="input search" id="draftNameInput" placeholder="اسم فصيلة جديدة..." />
+              <button class="btn btn-primary" id="addDraftBtn">+ إضافة فصيلة</button>
+            </div>
+
+            <div id="draftCards" class="draft-list"></div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <div class="drawer" id="bottomNav">
+      <button class="nav-btn active" data-nav="dashboard"><span class="nav-icon">🏠</span><span>الرئيسية</span></button>
+      <button class="nav-btn" data-nav="attendance"><span class="nav-icon">✅</span><span>التمام</span></button>
+      <button class="nav-btn" data-nav="leaves"><span class="nav-icon">📋</span><span>الإجازات</span></button>
+      <button class="nav-btn" data-nav="personnel"><span class="nav-icon">👥</span><span>الأفراد</span></button>
+      <button class="nav-btn" data-nav="cashier"><span class="nav-icon">💰</span><span>الصرف</span></button>
+      <button class="nav-btn" data-nav="drafts"><span class="nav-icon">🧳</span><span>المسودات</span></button>
+    </div>
+  </div>
+
+  <div id="leaveModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">تعديل بيانات الإجازة</div>
+        <button class="close-x" data-close="leaveModal">×</button>
+      </div>
+
+      <div class="modal-grid">
+        <div class="field full">
+          <label>الجندي</label>
+          <input id="leavePersonInput" type="text" />
+        </div>
+
+        <div class="field full">
+          <label>النوع / الحالة الإدارية</label>
+          <select id="leaveTypeInput">
+            <option value="إجازة">إجازة</option>
+            <option value="هروب">هروب</option>
+            <option value="مرضية">مرضية</option>
+            <option value="مستحقة">مستحقة</option>
+          </select>
+        </div>
+
+        <div class="field full">
+          <label>تاريخ البداية</label>
+          <input id="leaveFromInput" type="date" />
+        </div>
+
+        <div class="field full">
+          <label>تاريخ النهاية</label>
+          <input id="leaveToInput" type="date" />
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-outline" data-close="leaveModal">إلغاء</button>
+        <button class="btn btn-primary" id="saveLeaveBtn">حفظ</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="personModal" class="modal-overlay">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">إضافة / تعديل فرد</div>
+        <button class="close-x" data-close="personModal">×</button>
+      </div>
+
+      <div class="modal-grid">
+        <div class="field">
+          <label>الاسم الرباعي</label>
+          <input id="personName" type="text" />
+        </div>
+        <div class="field">
+          <label>الرقم العسكري</label>
+          <input id="personNumber" type="text" />
+        </div>
+        <div class="field">
+          <label>اسم المستخدم</label>
+          <input id="personUsername" type="text" />
+        </div>
+        <div class="field">
+          <label>كلمة المرور</label>
+          <input id="personPassword" type="password" />
+        </div>
+        <div class="field">
+          <label>الدور</label>
+          <select id="personRole">
+            <option value="admin">قائد اللواء</option>
+            <option value="hr_admin">رئيس شؤون الموظفين</option>
+            <option value="b1-hr">مختص بشرية ك1</option>
+            <option value="b2-hr">مختص بشرية ك2</option>
+            <option value="b3-hr">مختص بشرية ك3</option>
+            <option value="b4-hr">مختص بشرية ك4</option>
+            <option value="b5-hr">مختص بشرية ك5</option>
+            <option value="b1-cash">صراف ك1</option>
+            <option value="b2-cash">صراف ك2</option>
+            <option value="b3-cash">صراف ك3</option>
+            <option value="b4-cash">صراف ك4</option>
+            <option value="b5-cash">صراف ك5</option>
+            <option value="soldier">جندي</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>الكتيبة</label>
+          <select id="personTeam">
+            <option value="الكتائب">الكل</option>
+            <option value="ك1">ك1</option>
+            <option value="ك2">ك2</option>
+            <option value="ك3">ك3</option>
+            <option value="ك4">ك4</option>
+            <option value="ك5">ك5</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>السرية</label>
+          <select id="personSquad">
+            <option value="س1">س1</option>
+            <option value="س2">س2</option>
+            <option value="س3">س3</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>الحالة</label>
+          <select id="personStatus">
+            <option value="مفعل">مفعل</option>
+            <option value="غير مفعل">غير مفعل</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn btn-outline" data-close="personModal">إلغاء</button>
+        <button class="btn btn-primary" id="savePersonBtn">حفظ</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = 'laawa_54_users_v1';
+    const PERSONNEL_KEY = 'laawa_54_personnel_v1';
+    const ATTENDANCE_KEY = 'laawa_54_attendance_v1';
+    const LEAVES_KEY = 'laawa_54_leaves_v1';
+    const DRAFTS_KEY = 'laawa_54_drafts_v1';
+    const ACTIVITY_KEY = 'laawa_54_activity_v1';
+    const currentUserKey = 'laawa_54_current_user';
+
+    const defaultUsers = [
+      { username: 'admin', password: '1234', role: 'admin', name: 'قائد اللواء', team: 'الكتائب', squad: 'كل', status: 'مفعل' },
+      { username: 'hr_admin', password: '1234', role: 'hr_admin', name: 'مجدي هيكل', team: 'الكتائب', squad: 'كل', status: 'مفعل' },
+      { username: 'b1-hr', password: '1234', role: 'b1-hr', name: 'صقر عبدالكريم', team: 'ك1', squad: 'س1', status: 'مفعل' },
+      { username: 'b2-hr', password: '1234', role: 'b2-hr', name: 'صقر عبدالكريم ك2', team: 'ك2', squad: 'س1', status: 'مفعل' },
+      { username: 'b3-hr', password: '1234', role: 'b3-hr', name: 'محمد علي', team: 'ك3', squad: 'س1', status: 'مفعل' },
+      { username: 'b4-hr', password: '1234', role: 'b4-hr', name: 'حسن محمد', team: 'ك4', squad: 'س1', status: 'مفعل' },
+      { username: 'b5-hr', password: '1234', role: 'b5-hr', name: 'عباس أحمد', team: 'ك5', squad: 'س1', status: 'مفعل' },
+      { username: 'b1-cash', password: '1234', role: 'b1-cash', name: 'عماد الجهوري', team: 'ك1', squad: 'س1', status: 'مفعل' },
+      { username: 'b2-cash', password: '1234', role: 'b2-cash', name: 'أحمد الجهني', team: 'ك2', squad: 'س1', status: 'مفعل' },
+      { username: 'b3-cash', password: '1234', role: 'b3-cash', name: 'عماد الجهوري ك3', team: 'ك3', squad: 'س1', status: 'مفعل' },
+      { username: 'b4-cash', password: '1234', role: 'b4-cash', name: 'فهد سالم', team: 'ك4', squad: 'س1', status: 'مفعل' },
+      { username: 'b5-cash', password: '1234', role: 'b5-cash', name: 'خالد مصلح', team: 'ك5', squad: 'س1', status: 'مفعل' },
+    ];
+
+    const defaultPersonnel = [
+      { id: 1, name: 'عبد الرحمن وليد الشمري', number: '20001', username: 'a1', password: '1234', role: 'soldier', team: 'ك1', squad: 'س1', status: 'مفعل', attendance: 'حاضر', rank: 'جندي', leave: 'لا' },
+      { id: 2, name: 'طارق فارس السهلي', number: '20002', username: 'a2', password: '1234', role: 'soldier', team: 'ك2', squad: 'س1', status: 'مفعل', attendance: 'حاضر', rank: 'جندي', leave: 'لا' },
+      { id: 3, name: 'محمد حمد بن دغر', number: '20003', username: 'a3', password: '1234', role: 'soldier', team: 'ك3', squad: 'س1', status: 'مفعل', attendance: 'سجن', rank: 'جندي', leave: 'لا' },
+      { id: 4, name: 'أحمد بشار الجهني', number: '20004', username: 'a4', password: '1234', role: 'soldier', team: 'ك3', squad: 'س1', status: 'مفعل', attendance: 'حاضر', rank: 'جندي', leave: 'لا' },
+      { id: 5, name: 'فهد محمد', number: '20005', username: 'a5', password: '1234', role: 'soldier', team: 'ك4', squad: 'س1', status: 'مفعل', attendance: 'شهيد', rank: 'جندي', leave: 'لا' },
+      { id: 6, name: 'قاسم محمد', number: '20006', username: 'a6', password: '1234', role: 'soldier', team: 'ك5', squad: 'س1', status: 'مفعل', attendance: 'غائب', rank: 'جندي', leave: 'لا' },
+      { id: 7, name: 'حسين أحمد', number: '20007', username: 'a7', password: '1234', role: 'soldier', team: 'ك2', squad: 'س2', status: 'مفعل', attendance: 'حاضر', rank: 'جندي', leave: 'لا' },
+      { id: 8, name: 'نواف سعيد', number: '20008', username: 'a8', password: '1234', role: 'soldier', team: 'ك1', squad: 'س2', status: 'مفعل', attendance: 'حاضر', rank: 'جندي', leave: 'لا' }
+    ];
+
+    const defaultDrafts = [
+      { id: 1, title: 'محمد', count: 12, color: 'blue' },
+      { id: 2, title: 'فهد', count: 12, color: 'green' },
+      { id: 3, title: 'قاسم', count: 19, color: 'orange' }
+    ];
+
+    const defaultLeaves = [
+      { id: 1, person: '20001 - طارق فارس السهلي', type: 'هروب', from: '2026-09-10', to: '', status: 'active', note: 'تاريخ الانتهاء مفتوح' },
+      { id: 2, person: '20004 - عبد الرحمن وليد', type: 'إجازة', from: '2026-09-10', to: '2026-09-15', status: 'ended', note: 'منتهية' },
+      { id: 3, person: '20005 - قاسم محمد', type: 'مرضية', from: '2026-09-12', to: '', status: 'active', note: 'مفتوح' }
+    ];
+
+    const defaultAttendance = [
+      { id: 1, name: 'عبد الرحمن وليد', number: '20001', team: 'ك1', squad: 'س1', status: 'حاضر', date: '2026-09-10' },
+      { id: 2, name: 'طارق فارس السهلي', number: '20002', team: 'ك2', squad: 'س1', status: 'حاضر', date: '2026-09-10' },
+      { id: 3, name: 'محمد حمد بن دغر', number: '20003', team: 'ك3', squad: 'س1', status: 'سجن', date: '2026-09-10' },
+      { id: 4, name: 'أحمد بشار الجهني', number: '20004', team: 'ك3', squad: 'س1', status: 'حاضر', date: '2026-09-10' },
+      { id: 5, name: 'فهد محمد', number: '20005', team: 'ك4', squad: 'س1', status: 'شهيد', date: '2026-09-10' },
+      { id: 6, name: 'قاسم محمد', number: '20006', team: 'ك5', squad: 'س1', status: 'غائب', date: '2026-09-10' }
+    ];
+
+    const defaultActivity = [
+      { text: 'تم تسجيل حضور الكتيبة 3', time: '08:55', user: 'أحمد' },
+      { text: 'تم تحديث إجازة فرد', time: '09:12', user: 'مجدي' },
+      { text: 'تم إغلاق الصندوق', time: '09:40', user: 'المالية' }
+    ];
+
+    const app = {
+      users: loadStorage(STORAGE_KEY, defaultUsers),
+      personnel: loadStorage(PERSONNEL_KEY, defaultPersonnel),
+      attendance: loadStorage(ATTENDANCE_KEY, defaultAttendance),
+      leaves: loadStorage(LEAVES_KEY, defaultLeaves),
+      drafts: loadStorage(DRAFTS_KEY, defaultDrafts),
+      activity: loadStorage(ACTIVITY_KEY, defaultActivity),
+      currentUser: JSON.parse(localStorage.getItem(currentUserKey) || 'null'),
+      activePage: 'dashboard',
+      activeAttendanceTab: 'all',
+      activeCashTab: 'eligible',
+      leaveEditId: null
+    };
+
+    function loadStorage(key, fallback){
+      try{
+        const raw = localStorage.getItem(key);
+        if(!raw) return JSON.parse(JSON.stringify(fallback));
+        return JSON.parse(raw);
+      }catch{ return JSON.parse(JSON.stringify(fallback)); }
+    }
+    function saveStorage(key, value){
+      localStorage.setItem(key, JSON.stringify(value));
+    }
+
+    function hashPassword(val){
+      let hash = 0; for (let i=0; i<val.length; i++) hash = ((hash*31)+val.charCodeAt(i))>>>0; return String(hash);
+    }
+
+    function getRoleLabel(role){
+      const map = {
+        admin: 'قائد اللواء',
+        hr_admin: 'رئيس شؤون الموظفين',
+        'b1-hr': 'مختص بشرية ك1',
+        'b2-hr': 'مختص بشرية ك2',
+        'b3-hr': 'مختص بشرية ك3',
+        'b4-hr': 'مختص بشرية ك4',
+        'b5-hr': 'مختص بشرية ك5',
+        'b1-cash': 'صراف ك1',
+        'b2-cash': 'صراف ك2',
+        'b3-cash': 'صراف ك3',
+        'b4-cash': 'صراف ك4',
+        'b5-cash': 'صراف ك5',
+        soldier: 'جندي'
+      };
+      return map[role] || role;
+    }
+
+    function canViewPage(page){
+      const role = app.currentUser?.role;
+      const pages = {
+        dashboard: ['admin','hr_admin','b1-hr','b2-hr','b3-hr','b4-hr','b5-hr','b1-cash','b2-cash','b3-cash','b4-cash','b5-cash'],
+        attendance: ['admin','hr_admin','b1-hr','b2-hr','b3-hr','b4-hr','b5-hr'],
+        leaves: ['admin','hr_admin','b1-hr','b2-hr','b3-hr','b4-hr','b5-hr'],
+        personnel: ['admin','hr_admin','b1-hr','b2-hr','b3-hr','b4-hr','b5-hr'],
+        cashier: ['admin','b1-cash','b2-cash','b3-cash','b4-cash','b5-cash'],
+        drafts: ['admin','b1-cash','b2-cash','b3-cash','b4-cash','b5-cash']
+      };
+      return pages[page]?.includes(role) || false;
+    }
+
+    function renderUserMenu(){
+      const user = app.currentUser;
+      if(!user){ return; }
+      document.getElementById('topUserName').textContent = user.name || user.username;
+      document.getElementById('topUserRole').textContent = getRoleLabel(user.role);
+      document.getElementById('topAvatar').textContent = (user.name||user.username).charAt(0).toUpperCase();
+    }
+
+    function setMainView(){
+      const mainScreen = document.getElementById('mainScreen');
+      const loginScreen = document.getElementById('loginScreen');
+      if(app.currentUser){
+        loginScreen.classList.add('hidden');
+        mainScreen.classList.add('active');
+      } else {
+        loginScreen.classList.remove('hidden');
+        mainScreen.classList.remove('active');
+      }
+      renderUserMenu();
+
+      document.querySelectorAll('.nav-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.nav === app.activePage);
+      });
+
+      document.querySelectorAll('.tab[data-page]').forEach(btn=>{
+        btn.classList.toggle('active', btn.dataset.page === app.activePage);
+      });
+
+      Object.keys({
+        dashboard: 'page-dashboard',
+        attendance: 'page-attendance',
+        leaves: 'page-leaves',
+        personnel: 'page-personnel',
+        cashier: 'page-cashier',
+        drafts: 'page-drafts'
+      }).forEach(key => {
+        const el = document.getElementById('page-' + key);
+        if(el) el.classList.toggle('hidden', key !== app.activePage);
+      });
+
+      if(app.currentUser) {
+        renderDashboard();
+        renderAttendance();
+        renderLeaves();
+        renderPersonnel();
+        renderCashier();
+        renderDrafts();
+      }
+    }
+
+    function showPage(page){
+      if(!canViewPage(page)) return;
+      app.activePage = page;
+      setMainView();
+    }
+
+    function renderDashboard(){
+      const total = app.personnel.length;
+      const present = app.personnel.filter(p=>p.attendance === 'حاضر').length;
+      const absent = app.personnel.filter(p=>p.attendance === 'غائب').length;
+      const jail = app.personnel.filter(p=>p.attendance === 'سجن').length;
+      const escaped = app.personnel.filter(p=>p.attendance === 'هروب').length;
+      const leave = app.personnel.filter(p=>p.leave === 'إجازة').length;
+      const sick = app.personnel.filter(p=>p.attendance === 'مرضية').length;
+      const ready = total ? Math.round((present / total) * 100) : 0;
+
+      const cards = [
+        { label: 'القوة الكلية', value: total, meta: 'أفراد مسجلون', tone: 'green' },
+        { label: 'موجودة', value: present, meta: 'حضور', tone: 'green' },
+        { label: 'غائب', value: absent, meta: 'متغيب', tone: 'red' },
+        { label: 'هروب', value: escaped, meta: 'أوامر إدارية', tone: 'yellow' },
+        { label: 'إجازة مستحقة', value: leave, meta: 'إجازات قائمة', tone: 'blue' },
+        { label: 'مرضية', value: sick, meta: 'مرضي', tone: 'gray' },
+        { label: 'نسبة الجاهزية', value: ready+'%', meta: 'جاهزية يومية', tone: 'green' }
+      ];
+
+      document.getElementById('dashboardCards').innerHTML = cards.map((c,idx)=>{
+        const badge = idx >= 2 ? 'status-red' : idx === 5 ? 'status-yellow' : 'status-green';
+        return `
+          <div class="stat-card">
+            <div class="stat-top">
+              <span>${c.label}</span>
+              <span class="status-flag ${badge}">${c.value}</span>
+            </div>
+            <div class="stat-value">${c.value}</div>
+            <div class="stat-sub">${c.meta}</div>
+          </div>
+        `;
+      }).join('');
+
+      const tbody = document.getElementById('activityTable');
+      tbody.innerHTML = app.activity.slice(0,5).map(a => `
+        <tr>
+          <td>${a.text}</td>
+          <td>${a.time}</td>
+          <td>${a.user}</td>
+        </tr>
+      `).join('');
+    }
+
+    function safeDate(dateStr){
+      if(!dateStr) return '';
+      const d = new Date(dateStr);
+      return isNaN(d.getTime()) ? dateStr : d.toLocaleDateString('ar-EG');
+    }
+
+    function renderAttendance(){
+      const search = document.getElementById('attendanceSearch').value.toLowerCase();
+      const squad = document.getElementById('attendanceSquadFilter').value;
+      const targetDate = document.getElementById('attendanceDate').value;
+
+      const rows = app.attendance.filter(item => {
+        const matchSearch = !search || item.name.includes(search) || item.number.includes(search);
+        const matchSquad = squad === 'all' || item.squad === squad;
+        const matchDate = !targetDate || item.date === targetDate;
+        return matchSearch && matchSquad && matchDate;
+      });
+
+      const fill = document.getElementById('attendanceSquadFilter');
+      fill.innerHTML = '<option value="all">كل السرايا</option>' + [...new Set(app.attendance.map(x=>x.squad))].map(s => `<option value="${s}">${s}</option>`).join('');
+
+      if (app.activeAttendanceTab === 'present') {
+        const presentRows = rows.filter(r => r.status === 'حاضر');
+        renderAttendanceCards(presentRows);
+      } else if (app.activeAttendanceTab === 'history') {
+        document.getElementById('attendanceContent').innerHTML = renderMonthlyTable();
+      } else {
+        renderAttendanceCards(rows);
+      }
+    }
+
+    function renderAttendanceCards(rows){
+      if(!rows.length){
+        document.getElementById('attendanceContent').innerHTML = '<div class=\"muted\">لا توجد نتائج</div>';
+        return;
+      }
+      document.getElementById('attendanceContent').innerHTML = `
+        <div class="attendance-grid">
+          ${rows.map(item => `
+            <div class="person-card">
+              <div class="person-top">
+                <div class="person-name">${item.name}</div>
+                <span class="status-pill ${statusClass(item.status)}">${item.status}</span>
+              </div>
+              <div class="person-meta">${item.number}</div>
+              <div class="person-meta">${item.team} / ${item.squad}</div>
+              <div class="person-meta">${safeDate(item.date)}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderMonthlyTable(){
+      const days = ['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30'];
+      const rows = days.map(day => {
+        const active = app.attendance.some(a => a.date.endsWith(day) && a.status === 'حاضر');
+        const locked = day === '10' || day === '12';
+        return `<td><span class="badge ${locked ? 'warn' : 'good'}">${locked ? 'قفل' : 'صح'}</span></td>`;
+      }).join('');
+      return `
+        <table class="list-table">
+          <thead><tr><th>اليوم</th>${days.map(d=>`<th>${d}</th>`).join('')}</tr></thead>
+          <tbody>
+            <tr><td>التمام</td>${rows}</tr>
+          </tbody>
+        </table>
+      `;
+    }
+
+    function statusClass(status){
+      const map = {
+        'حاضر': 'present',
+        'سجن': 'jail',
+        'شهيد': 'dead',
+        'غائب': 'absent',
+        'هروب': 'road'
+      };
+      return map[status] || 'present';
+    }
+
+    function renderLeaves(){
+      const search = document.getElementById('leaveSearch').value.toLowerCase();
+      const statusFilter = document.getElementById('leaveStatusFilter').value;
+
+      let rows = app.leaves.filter(item => {
+        const matchSearch = !search || item.person.toLowerCase().includes(search) || item.type.toLowerCase().includes(search);
+        const matchStatus = statusFilter === 'all' || item.status === statusFilter;
+        return matchSearch && matchStatus;
+      });
+
+      document.getElementById('leavesTable').innerHTML = `
+        <table class="list-table">
+          <thead>
+            <tr>
+              <th>الإجراءات</th>
+              <th>الحالة</th>
+              <th>التاريخ</th>
+              <th>النوع</th>
+              <th>الاسم</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${rows.map(item => `
+              <tr>
+                <td>
+                  <button class="tiny-btn" data-action="delete-leave" data-id="${item.id}">حذف</button>
+                  <button class="tiny-btn" data-action="edit-leave" data-id="${item.id}">تعديل</button>
+                  <button class="tiny-btn" data-action="direct-leave" data-id="${item.id}">مباشرة</button>
+                </td>
+                <td><span class="badge ${item.status === 'active' ? 'good' : 'warn'}">${item.status === 'active' ? 'سارية' : 'منتهية'}</span></td>
+                <td>${item.from}${item.to ? ' إلى ' + item.to : ' إلى مفتوح'}</td>
+                <td>${item.type}</td>
+                <td>${item.person}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderPersonnel(){
+      const search = document.getElementById('personSearch').value.toLowerCase();
+      const team = document.getElementById('teamFilter').value;
+      const squad = document.getElementById('squadFilter').value;
+
+      const teamOptions = ['all', ...new Set(app.personnel.map(p => p.team))];
+      const squadOptions = ['all', ...new Set(app.personnel.map(p => p.squad))];
+      document.getElementById('teamFilter').innerHTML = teamOptions.map(v => `<option value="${v === 'all' ? 'all' : v}">${v === 'all' ? 'كل الكتائب' : v}</option>`).join('');
+      document.getElementById('squadFilter').innerHTML = squadOptions.map(v => `<option value="${v === 'all' ? 'all' : v}">${v === 'all' ? 'كل السرايا' : v}</option>`).join('');
+      if(team !== 'all') document.getElementById('teamFilter').value = team;
+      if(squad !== 'all') document.getElementById('squadFilter').value = squad;
+
+      const rows = app.personnel.filter(item => {
+        const okSearch = !search || item.name.toLowerCase().includes(search) || item.number.toLowerCase().includes(search);
+        const okTeam = team === 'all' || item.team === team;
+        const okSquad = squad === 'all' || item.squad === squad;
+        return okSearch && okTeam && okSquad;
+      });
+
+      document.getElementById('personnelGrid').innerHTML = rows.map(item => `
+        <div class="person-card">
+          <div class="person-top">
+            <div class="person-name">${item.name}</div>
+            <span class="status-pill ${item.status === 'مفعل' ? 'present' : 'absent'}">${item.status}</span>
+          </div>
+          <div class="person-meta">${item.number}</div>
+          <div class="person-meta">${item.team} / ${item.squad}</div>
+          <div class="person-meta">${item.attendance || 'غير محدد'}</div>
+          <div class="person-top" style="margin-top:8px;">
+            <button class="tiny-btn" data-action="edit-person" data-id="${item.id}">تعديل</button>
+            <button class="tiny-btn" data-action="delete-person" data-id="${item.id}">حذف</button>
+          </div>
+        </div>
+      `).join('') || '<div class=\"muted\">لا توجد نتائج</div>';
+    }
+
+    function renderCashier(){
+      const total = app.personnel.length || 243;
+      const eligible = Math.max(243, Math.min(total * 2, 243));
+      const received = Math.max(0, Math.floor(eligible * 0.15));
+      const rate = Math.round((received / eligible) * 100);
+
+      document.getElementById('cashRate').textContent = rate + '%';
+      document.getElementById('cashTotal').textContent = eligible;
+      document.getElementById('cashReceived').textContent = received;
+
+      const content = [
+        { name: 'أحمد بشار الجهني المقرمي', team: 'ك3', squad: 'س1', status: 'مستحق' },
+        { name: 'خالد عيسى', team: 'ك1', squad: 'س2', status: 'مستحق' },
+        { name: 'أمين محمد', team: 'ك5', squad: 'س1', status: 'لم يستلم' }
+      ];
+
+      document.getElementById('cashierContent').innerHTML = `
+        <div class="attendance-grid">
+          ${content.map(item => `
+            <div class="person-card">
+              <div class="person-top">
+                <div class="person-name">${item.name}</div>
+                <span class="status-pill ${item.status === 'مستحق' ? 'present' : 'absent'}">${item.status}</span>
+              </div>
+              <div class="person-meta">${item.team} / ${item.squad}</div>
+            </div>
+          `).join('')}
+        </div>
+      `;
+    }
+
+    function renderDrafts(){
+      const input = document.getElementById('draftNameInput').value.trim();
+      const list = input ? app.drafts.filter(d => d.title.toLowerCase().includes(input.toLowerCase())) : app.drafts;
+
+      document.getElementById('draftCards').innerHTML = list.map(d => `
+        <div class="draft-card ${d.color}">
+          <div class="draft-head">
+            <div style="font-weight:800;font-size:1.1rem">${d.title}</div>
+            <span class="badge info">${d.count} فرد</span>
+          </div>
+          <div class="draft-actions">
+            <button class="tiny-btn" data-action="edit-draft" data-id="${d.id}">تعديل</button>
+            <button class="tiny-btn" data-action="delete-draft" data-id="${d.id}">حذف</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function login(){
+      const username = document.getElementById('username').value.trim();
+      const password = document.getElementById('password').value.trim();
+
+      const user = app.users.find(u => u.username === username && u.password === password);
+      if(!user){
+        alert('اسم المستخدم أو كلمة المرور غير صحيحة');
+        return;
+      }
+      app.currentUser = user;
+      localStorage.setItem(currentUserKey, JSON.stringify(user));
+      setMainView();
+    }
+
+    function logout(){
+      app.currentUser = null;
+      localStorage.removeItem(currentUserKey);
+      setMainView();
+    }
+
+    function openLeaveModal(leaveId = null){
+      app.leaveEditId = leaveId;
+      const modal = document.getElementById('leaveModal');
+      if(leaveId){
+        const item = app.leaves.find(x => x.id === leaveId);
+        if(!item) return;
+        document.getElementById('leavePersonInput').value = item.person;
+        document.getElementById('leaveTypeInput').value = item.type;
+        document.getElementById('leaveFromInput').value = item.from;
+        document.getElementById('leaveToInput').value = item.to || '';
+      } else {
+        document.getElementById('leavePersonInput').value = '';
+        document.getElementById('leaveTypeInput').value = 'إجازة';
+        document.getElementById('leaveFromInput').value = '';
+        document.getElementById('leaveToInput').value = '';
+      }
+      modal.classList.add('open');
+    }
+
+    function saveLeave(){
+      const person = document.getElementById('leavePersonInput').value.trim();
+      const type = document.getElementById('leaveTypeInput').value;
+      const from = document.getElementById('leaveFromInput').value;
+      const to = document.getElementById('leaveToInput').value;
+
+      if(!person || !from){
+        alert('الرجاء تعبئة الجندي وتاريخ البداية');
+        return;
+      }
+
+      if(app.leaveEditId){
+        const index = app.leaves.findIndex(x => x.id === app.leaveEditId);
+        if(index >= 0){
+          app.leaves[index] = { ...app.leaves[index], person, type, from, to, status: to ? 'ended' : 'active' };
+        }
+      } else {
+        app.leaves.unshift({
+          id: Date.now(),
+          person,
+          type,
+          from,
+          to,
+          status: to ? 'ended' : 'active',
+          note: to ? 'منتهية' : 'مفتوح'
+        });
+      }
+
+      saveStorage(LEAVES_KEY, app.leaves);
+      renderLeaves();
+      document.getElementById('leaveModal').classList.remove('open');
+      app.leaveEditId = null;
+    }
+
+    function openPersonModal(personId = null){
+      const modal = document.getElementById('personModal');
+      if(personId){
+        const item = app.personnel.find(p => p.id === personId);
+        if(!item) return;
+        document.getElementById('personName').value = item.name;
+        document.getElementById('personNumber').value = item.number;
+        document.getElementById('personUsername').value = item.username || '';
+        document.getElementById('personPassword').value = item.password || '';
+        document.getElementById('personRole').value = item.role || 'soldier';
+        document.getElementById('personTeam').value = item.team || 'ك1';
+        document.getElementById('personSquad').value = item.squad || 'س1';
+        document.getElementById('personStatus').value = item.status || 'مفعل';
+        modal.dataset.editId = personId;
+      } else {
+        document.getElementById('personName').value = '';
+        document.getElementById('personNumber').value = '';
+        document.getElementById('personUsername').value = '';
+        document.getElementById('personPassword').value = '';
+        document.getElementById('personRole').value = 'soldier';
+        document.getElementById('personTeam').value = 'ك1';
+        document.getElementById('personSquad').value = 'س1';
+        document.getElementById('personStatus').value = 'مفعل';
+        delete modal.dataset.editId;
+      }
+      modal.classList.add('open');
+    }
+
+    function savePerson(){
+      const obj = {
+        name: document.getElementById('personName').value.trim(),
+        number: document.getElementById('personNumber').value.trim(),
+        username: document.getElementById('personUsername').value.trim(),
+        password: document.getElementById('personPassword').value.trim(),
+        role: document.getElementById('personRole').value,
+        team: document.getElementById('personTeam').value,
+        squad: document.getElementById('personSquad').value,
+        status: document.getElementById('personStatus').value,
+        attendance: 'حاضر',
+        leave: 'لا'
+      };
+
+      if(!obj.name || !obj.number || !obj.username || !obj.password){
+        alert('الرجاء تعبئة جميع الحقول');
+        return;
+      }
+
+      const editId = document.getElementById('personModal').dataset.editId;
+      if(editId){
+        const idx = app.personnel.findIndex(p => p.id == editId);
+        if(idx >= 0){
+          app.personnel[idx] = { ...app.personnel[idx], ...obj };
+        }
+      } else {
+        app.personnel.unshift({
+          id: Date.now(),
+          ...obj
+        });
+      }
+
+      saveStorage(PERSONNEL_KEY, app.personnel);
+      renderPersonnel();
+      renderDashboard();
+      document.getElementById('personModal').classList.remove('open');
+      delete document.getElementById('personModal').dataset.editId;
+    }
+
+    document.addEventListener('click', function(e){
+      const target = e.target;
+
+      if(target.id === 'loginBtn' || target.closest('#loginBtn')) login();
+
+      if(target.dataset.nav){
+        const page = target.dataset.nav;
+        showPage(page);
+      }
+
+      if(target.matches('.tab[data-page]')){
+        const page = target.dataset.page;
+        showPage(page);
+      }
+
+      if(target.matches('.tab[data-att-tab]')){
+        app.activeAttendanceTab = target.dataset.attTab;
+        renderAttendance();
+        document.querySelectorAll('.tab[data-att-tab]').forEach(btn=>btn.classList.toggle('active', btn.dataset.attTab === app.activeAttendanceTab));
+      }
+
+      if(target.matches('.tab[data-cash-tab]')){
+        app.activeCashTab = target.dataset.cashTab;
+        renderCashier();
+        document.querySelectorAll('.tab[data-cash-tab]').forEach(btn=>btn.classList.toggle('active', btn.dataset.cashTab === app.activeCashTab));
+      }
+
+      if(target.dataset.close){
+        document.getElementById(target.dataset.close).classList.remove('open');
+      }
+
+      if(target.closest('[data-action="delete-leave"]')){
+        const id = Number(target.closest('[data-action="delete-leave"]').dataset.id);
+        app.leaves = app.leaves.filter(x => x.id !== id);
+        saveStorage(LEAVES_KEY, app.leaves);
+        renderLeaves();
+      }
+
+      if(target.closest('[data-action="edit-leave"]')){
+        const id = Number(target.closest('[data-action="edit-leave"]').dataset.id);
+        openLeaveModal(id);
+      }
+
+      if(target.closest('[data-action="delete-person"]')){
+        const id = Number(target.closest('[data-action="delete-person"]').dataset.id);
+        app.personnel = app.personnel.filter(x => x.id !== id);
+        saveStorage(PERSONNEL_KEY, app.personnel);
+        renderPersonnel();
+        renderDashboard();
+      }
+
+      if(target.closest('[data-action="edit-person"]')){
+        const id = Number(target.closest('[data-action="edit-person"]').dataset.id);
+        openPersonModal(id);
+      }
+
+      if(target.matches('#newLeaveBtn')) openLeaveModal();
+      if(target.matches('#saveLeaveBtn')) saveLeave();
+      if(target.matches('#newPersonBtn')) openPersonModal();
+      if(target.matches('#savePersonBtn')) savePerson();
+      if(target.matches('#addDraftBtn')){
+        const st = document.getElementById('draftNameInput').value.trim();
+        if(!st) return alert('أدخل اسم الفصيلة');
+        app.drafts.unshift({ id: Date.now(), title: st, count: 12, color: ['blue','green','orange'][Math.floor(Math.random()*3)] });
+        saveStorage(DRAFTS_KEY, app.drafts);
+        renderDrafts();
+      }
+      if(target.closest('[data-action="delete-draft"]')){
+        const id = Number(target.closest('[data-action="delete-draft"]').dataset.id);
+        app.drafts = app.drafts.filter(d => d.id !== id);
+        saveStorage(DRAFTS_KEY, app.drafts);
+        renderDrafts();
+      }
+      if(target.closest('[data-action="edit-draft"]')){
+        const id = Number(target.closest('[data-action="edit-draft"]').dataset.id);
+        const item = app.drafts.find(d => d.id === id);
+        if(item){
+          const name = prompt('تعديل اسم الفصيلة', item.title);
+          if(name && name.trim()){
+            item.title = name.trim();
+            saveStorage(DRAFTS_KEY, app.drafts);
+            renderDrafts();
+          }
+        }
+      }
+    });
+
+    document.getElementById('attendanceSearch').addEventListener('input', renderAttendance);
+    document.getElementById('attendanceSquadFilter').addEventListener('change', renderAttendance);
+    document.getElementById('attendanceDate').addEventListener('change', renderAttendance);
+    document.getElementById('leaveSearch').addEventListener('input', renderLeaves);
+    document.getElementById('leaveStatusFilter').addEventListener('change', renderLeaves);
+    document.getElementById('personSearch').addEventListener('input', renderPersonnel);
+    document.getElementById('teamFilter').addEventListener('change', renderPersonnel);
+    document.getElementById('squadFilter').addEventListener('change', renderPersonnel);
+    document.getElementById('draftNameInput').addEventListener('input', renderDrafts);
+
+    document.getElementById('markAllPresent').addEventListener('click', ()=> {
+      app.personnel = app.personnel.map(p => ({...p, attendance: 'حاضر'}));
+      saveStorage(PERSONNEL_KEY, app.personnel);
+      renderDashboard();
+      renderAttendance();
+    });
+
+    document.getElementById('previewTodayBtn').addEventListener('click', ()=> {
+      alert('تقرير اليوم: 323 قوة كلية، 247 موجود، 59 غائب، 8 هروب، 2 إجازة مستحقة، 0 مرضية');
+    });
+
+    document.getElementById('password').addEventListener('keydown', (e) => {
+      if(e.key === 'Enter') login();
+    });
+
+    document.getElementById('username').addEventListener('keydown', (e) => {
+      if(e.key === 'Enter') login();
+    });
+
+    setMainView();
+    renderDashboard();
+    renderAttendance();
+    renderLeaves();
+    renderPersonnel();
+    renderCashier();
+    renderDrafts();
+  </script>
+</body>
+</html>
