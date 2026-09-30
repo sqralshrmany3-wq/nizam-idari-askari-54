@@ -30,15 +30,15 @@
     body { overscroll-behavior: none; }
     button, input, select { font: inherit; }
     a { text-decoration: none; color: inherit; }
-    .hidden { display: none !important; }
+   .hidden { display: none!important; }
 
-    .app-shell {
+   .app-shell {
       min-height: 100vh;
       display: flex;
       background: var(--bg);
     }
 
-    .sidebar {
+   .sidebar {
       width: 260px;
       background: #fafaf9;
       border-left: 1px solid rgba(0,0,0,.08);
@@ -48,7 +48,7 @@
       gap: 14px;
     }
 
-    .brand {
+   .brand {
       display: flex;
       align-items: center;
       gap: 12px;
@@ -58,16 +58,16 @@
       margin-bottom: 12px;
     }
 
-    .logo {
+   .logo {
       width: 38px; height: 38px; border-radius: 50%;
       background: linear-gradient(135deg, #d6b166, #9a6b1b);
       border: 2px solid #1d1d1d;
       position: relative;
     }
-    .logo::before { content: ""; position: absolute; inset: 8px; border: 2px solid rgba(0,0,0,.65); border-radius: 50%; }
-    .logo::after { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: #1d1d1d; }
+   .logo::before { content: ""; position: absolute; inset: 8px; border: 2px solid rgba(0,0,0,.65); border-radius: 50%; }
+   .logo::after { content: ""; position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; border-radius: 50%; background: #1d1d1d; }
 
-    .nav-btn {
+   .nav-btn {
       width: 100%;
       border: 1px solid transparent;
       background: transparent;
@@ -78,19 +78,19 @@
       text-align: right;
       cursor: pointer;
     }
-    .nav-btn.active {
+   .nav-btn.active {
       background: var(--green-soft);
       color: var(--green-dark);
       border-color: rgba(30,122,52,.10);
     }
-    .nav-btn.hidden { display: none; }
+   .nav-btn.hidden { display: none; }
 
-    .main-panel {
+   .main-panel {
       flex: 1;
       min-width: 0;
     }
 
-    .topbar {
+   .topbar {
       background: #f3f3f2;
       border-bottom: 1px solid rgba(0,0,0,.08);
       padding: 14px 20px;
@@ -102,110 +102,110 @@
       z-index: 20;
     }
 
-    .topbar .left, .topbar .right {
+   .topbar.left,.topbar.right {
       display: flex; align-items: center; gap: 12px;
     }
 
-    .bell {
+   .bell {
       width: 36px; height: 36px; border-radius: 12px; background: #1d1d1d; color: white;
       display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; user-select: none;
     }
-    .bell-badge {
+   .bell-badge {
       position: absolute; right: 5px; top: 5px; min-width: 18px; height: 18px; border-radius: 999px;
       background: var(--red); color: white; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700;
       padding: 0 4px;
     }
 
-    .user-chip {
+   .user-chip {
       display: flex; align-items: center; gap: 8px;
       background: rgba(30,122,52,.07);
       border-radius: 12px;
       padding: 6px 10px;
     }
-    .avatar {
+   .avatar {
       width: 30px; height: 30px; border-radius: 50%; background: var(--green); color: white; display: grid; place-items: center; font-weight: 700;
     }
-    .user-meta small { display: block; color: var(--muted); }
+   .user-meta small { display: block; color: var(--muted); }
 
-    .page-wrap {
+   .page-wrap {
       max-width: 1200px; margin: 0 auto; padding: 18px 16px 80px;
     }
 
-    .page { display: none; }
-    .page.active { display: block; }
+   .page { display: none; }
+   .page.active { display: block; }
 
-    .section-card {
+   .section-card {
       background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; box-shadow: 0 10px 22px rgba(0,0,0,.03);
       margin-bottom: 18px;
     }
 
-    .section-head {
+   .section-head {
       display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; flex-wrap: wrap;
     }
-    .section-title { font-size: 1.2rem; font-weight: 800; }
+   .section-title { font-size: 1.2rem; font-weight: 800; }
 
-    .filters { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
-    .input, .select { background: white; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 42px; }
-    .search { min-width: 180px; flex: 1; }
+   .filters { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 14px; }
+   .input,.select { background: white; border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; min-height: 42px; }
+   .search { min-width: 180px; flex: 1; }
 
-    .btn {
+   .btn {
       border: none; border-radius: 10px; padding: 10px 16px; font-weight: 700; cursor: pointer; background: #fff; border: 1px solid var(--line); color: #2d2d2d;
     }
-    .btn-primary { background: var(--green); color: white; border-color: var(--green); }
-    .btn-danger { background: var(--red); color: white; border-color: var(--red); }
-    .btn-warning { background: var(--yellow); color: #3b2b05; border-color: var(--yellow); }
-    .btn-outline { background: #fff; border: 1px solid var(--line); }
-    .btn small { display: block; }
+   .btn-primary { background: var(--green); color: white; border-color: var(--green); }
+   .btn-danger { background: var(--red); color: white; border-color: var(--red); }
+   .btn-warning { background: var(--yellow); color: #3b2b05; border-color: var(--yellow); }
+   .btn-outline { background: #fff; border: 1px solid var(--line); }
+   .btn small { display: block; }
 
-    .card-grid {
+   .card-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;
     }
-    .stat-card {
+   .stat-card {
       background: var(--card); border: 1px solid var(--line); border-radius: 14px; padding: 16px; display: flex; flex-direction: column; gap: 8px;
     }
-    .stat-top { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: #3a413b; }
-    .stat-value { font-size: 2rem; font-weight: 800; }
-    .badge { display: inline-block; padding: 5px 8px; border-radius: 8px; font-size: 0.74rem; font-weight: 700; }
-    .badge.green { background: #def7e9; color: #166b3a; }
-    .badge.red { background: #fde2e2; color: #a92f2f; }
-    .badge.yellow { background: #fff4d8; color: #8a5a10; }
-    .badge.blue { background: #eaf2ff; color: #295db3; }
+   .stat-top { display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; color: #3a413b; }
+   .stat-value { font-size: 2rem; font-weight: 800; }
+   .badge { display: inline-block; padding: 5px 8px; border-radius: 8px; font-size: 0.74rem; font-weight: 700; }
+   .badge.green { background: #def7e9; color: #166b3a; }
+   .badge.red { background: #fde2e2; color: #a92f2f; }
+   .badge.yellow { background: #fff4d8; color: #8a5a10; }
+   .badge.blue { background: #eaf2ff; color: #295db3; }
 
     table.list-table { width: 100%; border-collapse: collapse; }
-    .list-table th, .list-table td { border-bottom: 1px solid var(--line); padding: 12px 10px; text-align: right; }
-    .list-table th { background: #f5f7f5; }
-    .list-table td.actions { white-space: nowrap; }
+   .list-table th,.list-table td { border-bottom: 1px solid var(--line); padding: 12px 10px; text-align: right; }
+   .list-table th { background: #f5f7f5; }
+   .list-table td.actions { white-space: nowrap; }
 
-    .row-grid {
+   .row-grid {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;
     }
 
-    .field { display: flex; flex-direction: column; gap: 8px; }
-    .field input, .field select { width: 100%; }
+   .field { display: flex; flex-direction: column; gap: 8px; }
+   .field input,.field select { width: 100%; }
 
-    .modal-overlay {
+   .modal-overlay {
       position: fixed; inset: 0; background: rgba(10,15,11,.42); display: none; align-items: center; justify-content: center; padding: 20px; z-index: 100;
     }
-    .modal-overlay.open { display: flex; }
-    .modal {
+   .modal-overlay.open { display: flex; }
+   .modal {
       width: min(640px, 96vw); background: #fff; border-radius: 20px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,.06); padding: 18px;
     }
-    .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-    .close-btn { border: none; background: #f0f0f0; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; font-size: 1.3rem; }
-    .modal-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--line); }
+   .modal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+   .close-btn { border: none; background: #f0f0f0; border-radius: 50%; width: 34px; height: 34px; cursor: pointer; font-size: 1.3rem; }
+   .modal-actions { display: flex; justify-content: flex-end; gap: 8px; padding-top: 14px; margin-top: 14px; border-top: 1px solid var(--line); }
 
-    .notify-box {
+   .notify-box {
       border: 1px solid rgba(45,123,232,.2); background: var(--blue-soft); border-radius: 12px; padding: 12px; color: #225bb3; font-weight: 700;
       margin-top: 14px;
     }
 
-    .alert-success { background: var(--green-soft); border: 1px solid rgba(30,122,52,.15); color: var(--green-dark); border-radius: 10px; padding: 10px 12px; font-weight: 700; }
-    .alert-error { background: var(--red-soft); border: 1px solid rgba(214,74,74,.20); color: #953535; border-radius: 10px; padding: 10px 12px; font-weight: 700; }
+   .alert-success { background: var(--green-soft); border: 1px solid rgba(30,122,52,.15); color: var(--green-dark); border-radius: 10px; padding: 10px 12px; font-weight: 700; }
+   .alert-error { background: var(--red-soft); border: 1px solid rgba(214,74,74,.20); color: #953535; border-radius: 10px; padding: 10px 12px; font-weight: 700; }
 
     @media (max-width: 880px) {
-      .app-shell { flex-direction: column; }
-      .sidebar { width: 100%; border-left: none; border-bottom: 1px solid rgba(0,0,0,.08); }
-      .main-panel { width: 100%; }
+     .app-shell { flex-direction: column; }
+     .sidebar { width: 100%; border-left: none; border-bottom: 1px solid rgba(0,0,0,.08); }
+     .main-panel { width: 100%; }
     }
   </style>
 </head>
@@ -265,6 +265,9 @@
             </div>
             <div style="margin-top: 12px;">
               <button class="btn btn-primary" id="loginBtn" style="width:100%;">تسجيل الدخول</button>
+            </div>
+            <div id="resetLoginWrap" class="hidden" style="margin-top: 8px;">
+              <button class="btn btn-outline" id="resetLoginBtn" style="width:100%;">استعادة بيانات الدخول الافتراضية</button>
             </div>
           </div>
         </section>
@@ -484,11 +487,19 @@
       drafts: loadStorage(DRAFTS_KEY, defaultDrafts),
       activity: loadStorage(ACTIVITY_KEY, defaultActivity),
       notifications: loadStorage(NOTIFY_KEY, []),
-      currentUser: JSON.parse(localStorage.getItem(CURRENT_USER_KEY) || 'null'),
+      currentUser: safeParseCurrentUser(),
       activePage: 'dashboard',
       activeEditUserIndex: null,
       activeEditPersonId: null
     };
+
+    function safeParseCurrentUser() {
+      try {
+        return JSON.parse(localStorage.getItem(CURRENT_USER_KEY) || 'null');
+      } catch (e) {
+        return null;
+      }
+    }
 
     function loadStorage(key, fallback) {
       try {
@@ -501,7 +512,7 @@
     }
 
     function saveStorage(key, value) {
-      localStorage.setItem(key, JSON.stringify(value));
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) {}
     }
 
     function getRoleTitle(role) {
@@ -539,7 +550,7 @@
         drafts: ['admin', 'financial'],
         users: ['admin']
       };
-      return !!role && !!pages[page] && pages[page].includes(role);
+      return!!role &&!!pages[page] && pages[page].includes(role);
     }
 
     function canModifySection(section) {
@@ -553,7 +564,7 @@
         users: ['admin']
       };
       if (!role) return false;
-      return !!map[section] && map[section].includes(role);
+      return!!map[section] && map[section].includes(role);
     }
 
     function showPage(page) {
@@ -580,7 +591,7 @@
 
     function renderNavs() {
       document.querySelectorAll('.nav-btn').forEach(btn => {
-        btn.classList.toggle('hidden', !canViewPage(btn.dataset.page));
+        btn.classList.toggle('hidden',!canViewPage(btn.dataset.page));
         btn.classList.toggle('active', btn.dataset.page === app.activePage);
       });
     }
@@ -631,16 +642,16 @@
       const selectedDate = (document.getElementById('attendanceDate')?.value || new Date().toISOString().slice(0,10));
 
       const filter = app.attendance.filter(row => {
-        const matchesText = !search || row.name.toLowerCase().includes(search) || String(row.number).includes(search);
+        const matchesText =!search || row.name.toLowerCase().includes(search) || String(row.number).includes(search);
         const matchesSquad = squad === 'all' || row.squad === squad;
-        const matchesDate = !selectedDate || row.date === selectedDate;
+        const matchesDate =!selectedDate || row.date === selectedDate;
         return matchesText && matchesSquad && matchesDate;
       });
 
-      const squadOptions = ['all', ...new Set(app.attendance.map(x => x.squad))];
+      const squadOptions = ['all',...new Set(app.attendance.map(x => x.squad))];
       const squadSelect = document.getElementById('attendanceSquadFilter');
       if (squadSelect) {
-        squadSelect.innerHTML = squadOptions.map(v => `<option value="${v}">${v === 'all' ? 'كل السرايا' : v}</option>`).join('');
+        squadSelect.innerHTML = squadOptions.map(v => `<option value="${v}">${v === 'all'? 'كل السرايا' : v}</option>`).join('');
         squadSelect.value = squad;
       }
 
@@ -648,7 +659,7 @@
         <div class="section-card" style="margin-bottom: 12px;">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
             <div><strong>${item.name}</strong></div>
-            <span class="badge ${item.status === 'حاضر' ? 'green' : 'red'}">${item.status}</span>
+            <span class="badge ${item.status === 'حاضر'? 'green' : 'red'}">${item.status}</span>
           </div>
           <div style="margin-top: 8px; color: var(--muted);">${item.number} • ${item.team} / ${item.squad} • ${item.date}</div>
         </div>
@@ -663,8 +674,8 @@
             <button class="btn btn-outline" data-action="edit-leave" data-id="${item.id}">تعديل</button>
             <button class="btn btn-danger" data-action="delete-leave" data-id="${item.id}">حذف</button>
           </td>
-          <td><span class="badge ${item.status === 'active' ? 'green' : 'yellow'}">${item.status === 'active' ? 'سارية' : 'منتهية'}</span></td>
-          <td>${item.from} ${item.to ? 'إلى ' + item.to : 'إلى مفتوح'}</td>
+          <td><span class="badge ${item.status === 'active'? 'green' : 'yellow'}">${item.status === 'active'? 'سارية' : 'منتهية'}</span></td>
+          <td>${item.from} ${item.to? 'إلى ' + item.to : 'إلى مفتوح'}</td>
           <td>${item.type}</td>
           <td>${item.person}</td>
         </tr>
@@ -679,7 +690,7 @@
         btn.onclick = () => {
           if (!canModifySection('leaves')) { alert('ليس لديك صلاحية حذف الإجازات'); return; }
           const id = Number(btn.dataset.id);
-          app.leaves = app.leaves.filter(x => x.id !== id);
+          app.leaves = app.leaves.filter(x => x.id!== id);
           saveStorage(LEAVES_KEY, app.leaves);
           recordNotification('حذف', 'إجازة', 'leaves', 'hr_admin');
           renderLeaves();
@@ -692,364 +703,12 @@
       const team = (document.getElementById('teamFilter')?.value || 'all');
       const squad = (document.getElementById('squadFilter')?.value || 'all');
 
-      const teamOptions = ['all', ...new Set(app.personnel.map(x => x.team))];
-      const squadOptions = ['all', ...new Set(app.personnel.map(x => x.squad))];
+      const teamOptions = ['all',...new Set(app.personnel.map(x => x.team))];
+      const squadOptions = ['all',...new Set(app.personnel.map(x => x.squad))];
       const teamFilter = document.getElementById('teamFilter');
       const squadFilter = document.getElementById('squadFilter');
       if (teamFilter) {
-        teamFilter.innerHTML = teamOptions.map(v => `<option value="${v}">${v === 'all' ? 'كل الكتائب' : v}</option>`).join('');
+        teamFilter.innerHTML = teamOptions.map(v => `<option value="${v}">${v === 'all'? 'كل الكتائب' : v}</option>`).join('');
         teamFilter.value = team;
       }
       if (squadFilter) {
-        squadFilter.innerHTML = squadOptions.map(v => `<option value="${v}">${v === 'all' ? 'كل السرايا' : v}</option>`).join('');
-        squadFilter.value = squad;
-      }
-
-      const list = app.personnel.filter(item => {
-        const textMatch = !search || item.name.toLowerCase().includes(search) || String(item.number).includes(search);
-        const teamMatch = team === 'all' || item.team === team;
-        const squadMatch = squad === 'all' || item.squad === squad;
-        return textMatch && teamMatch && squadMatch;
-      });
-
-      document.getElementById('personnelList').innerHTML = list.map(item => `
-        <div class="section-card" style="margin-bottom: 12px;">
-          <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;">
-            <div><strong>${item.name}</strong> (${item.number})</div>
-            <span class="badge ${item.status === 'مفعل' ? 'green' : 'red'}">${item.status}</span>
-          </div>
-          <div style="margin-top: 8px; color: var(--muted);">${item.team} / ${item.squad} • ${item.phone || 'لا يوجد رقم جوال'}</div>
-          <div style="margin-top: 12px; display:flex; gap:8px;">
-            <button class="btn btn-outline" data-action="edit-person" data-id="${item.id}">تعديل</button>
-            <button class="btn btn-danger" data-action="delete-person" data-id="${item.id}">حذف</button>
-          </div>
-        </div>
-      `).join('') || '<div class="alert-error">لا توجد نتائج</div>';
-
-      document.querySelectorAll('[data-action="edit-person"]').forEach(btn => {
-        btn.onclick = () => openPersonModal(Number(btn.dataset.id));
-      });
-
-      document.querySelectorAll('[data-action="delete-person"]').forEach(btn => {
-        btn.onclick = () => {
-          if (!canModifySection('personnel')) { alert('ليس لديك صلاحية حذف الأفراد'); return; }
-          const id = Number(btn.dataset.id);
-          const person = app.personnel.find(x => x.id === id);
-          app.personnel = app.personnel.filter(x => x.id !== id);
-          saveStorage(PERSONNEL_KEY, app.personnel);
-          recordNotification('حذف', `فرد ${person ? person.name : id}`, 'personnel', 'hr_admin');
-          renderPersonnel();
-        };
-      });
-    }
-
-    function renderCashier() {
-      const cards = [
-        { label: 'عدد المستحقين', value: app.personnel.length, tone: 'blue' },
-        { label: 'المستلمون', value: Math.max(0, app.personnel.length - 1), tone: 'green' },
-        { label: 'النسبة', value: Math.round(((app.personnel.length - 1) / Math.max(1, app.personnel.length)) * 100) + '%', tone: 'yellow' }
-      ];
-      document.getElementById('cashierCards').innerHTML = cards.map(c => `
-        <div class="stat-card">
-          <div class="stat-top"><span>${c.label}</span><span class="badge ${c.tone}">${c.value}</span></div>
-          <div class="stat-value">${c.value}</div>
-          <div style="color: var(--muted);">تحديث فوري</div>
-        </div>
-      `).join('');
-
-      document.getElementById('cashierList').innerHTML = app.personnel.map(item => `
-        <div class="section-card" style="margin-bottom: 10px;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;">
-            <div><strong>${item.name}</strong> (${item.number})</div>
-            <button class="btn btn-primary" data-cash="${item.id}">تسجيل استلام المستحقات</button>
-          </div>
-        </div>
-      `).join('');
-
-      document.querySelectorAll('[data-cash]').forEach(btn => {
-        btn.onclick = () => {
-          if (!canModifySection('cashier')) { alert('ليس لديك صلاحية في الصرف'); return; }
-          const id = Number(btn.dataset.cash);
-          const person = app.personnel.find(x => x.id === id);
-          recordNotification('تحديث', `استلام مستحقات ${person ? person.name : ''}`, 'cashier', 'financial');
-          alert('تم تسجيل الاستلام بنجاح');
-        };
-      });
-    }
-
-    function renderDrafts() {
-      document.getElementById('draftList').innerHTML = app.drafts.map(d => `
-        <div class="section-card" style="background: linear-gradient(180deg, #edf7ff, #fff); margin-bottom: 0;">
-          <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;">
-            <strong>${d.title}</strong>
-            <span class="badge blue">${d.count}</span>
-          </div>
-          <div style="margin-top: 12px; display:flex; gap:8px;">
-            <button class="btn btn-outline" data-draft="edit" data-id="${d.id}">تعديل</button>
-            <button class="btn btn-danger" data-draft="delete" data-id="${d.id}">حذف</button>
-          </div>
-        </div>
-      `).join('') || '<div class="alert-error">لا توجد مسودات</div>';
-
-      document.querySelectorAll('[data-draft="delete"]').forEach(btn => btn.onclick = () => {
-        if (!canModifySection('drafts')) { alert('ليس لديك صلاحية حذف المسودات'); return; }
-        const id = Number(btn.dataset.id);
-        app.drafts = app.drafts.filter(x => x.id !== id);
-        saveStorage(DRAFTS_KEY, app.drafts);
-        recordNotification('حذف', 'مسودة', 'drafts', 'financial');
-        renderDrafts();
-      });
-    }
-
-    function renderUsersTable() {
-      if (app.currentUser?.role !== 'admin') { document.getElementById('usersTable').innerHTML = ''; return; }
-      const rows = app.users.map((user, idx) => `
-        <tr>
-          <td class="actions"><button class="btn btn-outline" data-user-edit="${idx}">تعديل</button></td>
-          <td>${user.phone || ''}</td>
-          <td>${user.name || user.username}</td>
-          <td>${user.username}</td>
-          <td>${getRoleTitle(user.role)}</td>
-        </tr>
-      `).join('');
-      document.getElementById('usersTable').innerHTML = `
-        <table class="list-table">
-          <thead><tr><th>الإجراءات</th><th>رقم الجوال</th><th>الاسم</th><th>اسم المستخدم</th><th>الوظيفة</th></tr></thead>
-          <tbody>${rows}</tbody>
-        </table>`;
-
-      document.querySelectorAll('[data-user-edit]').forEach(btn => {
-        btn.onclick = () => {
-          const idx = Number(btn.getAttribute('data-user-edit'));
-          const user = app.users[idx];
-          app.activeEditUserIndex = idx;
-          document.getElementById('userUsername').value = user.username;
-          document.getElementById('userPassword').value = user.password;
-          document.getElementById('userPhone').value = user.phone || '';
-          document.getElementById('userModal').classList.add('open');
-        };
-      });
-    }
-
-    function openPersonModal(id) {
-      if (!canModifySection('personnel')) { alert('ليس لديك صلاحية تعديل الأفراد'); return; }
-      const person = app.personnel.find(item => item.id === id) || {};
-      app.activeEditPersonId = id || null;
-      document.getElementById('personModalTitle').textContent = id ? 'تعديل فرد' : 'إضافة فرد';
-      document.getElementById('personName').value = person.name || '';
-      document.getElementById('personNumber').value = person.number || '';
-      document.getElementById('personUsername').value = person.username || '';
-      document.getElementById('personPassword').value = person.password || '';
-      document.getElementById('personPhone').value = person.phone || '';
-      document.getElementById('personTeam').value = person.team || '';
-      document.getElementById('personSquad').value = person.squad || '';
-      document.getElementById('personStatus').value = person.status || 'مفعل';
-      document.getElementById('personModal').classList.add('open');
-    }
-
-    function recordNotification(action, target, section, notifyRole) {
-      const actor = app.currentUser || { name: 'النظام', username: 'system' };
-      const n = {
-        id: Date.now() + Math.random(),
-        from: actor.name || actor.username,
-        action,
-        target,
-        section,
-        when: new Date().toLocaleString('ar-EG'),
-        role: notifyRole || getOutboundRole(section)
-      };
-      app.notifications.unshift(n);
-      saveStorage(NOTIFY_KEY, app.notifications);
-
-      app.activity.unshift({ text: `${n.from} ${n.action} ${n.target}`, time: new Date().toLocaleTimeString('ar-EG'), user: n.from });
-      saveStorage(ACTIVITY_KEY, app.activity);
-
-      if ('Notification' in window && Notification.permission === 'granted') {
-        new Notification('إشعار جديد', { body: `${n.from} ${n.action} ${n.target} • ${n.when}` });
-      }
-      renderNotificationsBell();
-      renderDashboard();
-    }
-
-    function renderNotificationsBell() {
-      const count = app.notifications.length;
-      const badge = document.getElementById('notifBadge');
-      badge.textContent = count > 99 ? '99+' : count;
-      badge.classList.toggle('hidden', count === 0);
-    }
-
-    function openNotifications() {
-      const list = app.notifications;
-      document.getElementById('notifyList').innerHTML = list.length ? list.map(item => `
-        <div class="section-card" style="margin-bottom: 8px; padding: 12px;">
-          <div><strong>${item.from}</strong> ${item.action} ${item.target}</div>
-          <div style="color: var(--muted); margin-top: 6px;">${item.when}</div>
-          <div style="margin-top: 10px; display:flex; gap:8px; flex-wrap: wrap;">
-            ${renderNotifyButtons(item)}
-          </div>
-        </div>
-      `).join('') : '<div class="alert-error">لا توجد إشعارات</div>';
-      document.getElementById('notifyModal').classList.add('open');
-    }
-
-    function renderNotifyButtons(item) {
-      const phone = (app.users.find(u => u.role === item.role) || app.users[0])?.phone || '';
-      const safePhone = normalizePhoneValue(phone);
-      const text = encodeURIComponent(`${item.from} ${item.action} ${item.target} • ${item.when}`);
-      const waLink = safePhone ? `https://wa.me/${safePhone}?text=${text}` : '#';
-      const smsLink = safePhone ? `sms:${safePhone}?body=${text}` : '#';
-      return `
-        ${safePhone ? `<a class="btn btn-primary" href="${waLink}" target="_blank">إرسال إشعار واتساب</a>` : ''}
-        ${safePhone ? `<a class="btn btn-outline" href="${smsLink}">إرسال SMS</a>` : ''}
-      `;
-    }
-
-    function requestBrowserPermission() {
-      if (!('Notification' in window)) return;
-      if (Notification.permission === 'default') {
-        Notification.requestPermission().then(() => {});
-      }
-    }
-
-    document.getElementById('bellBtn').onclick = openNotifications;
-    document.querySelectorAll('[data-close="notifyModal"]').forEach(btn => btn.onclick = () => document.getElementById('notifyModal').classList.remove('open'));
-    document.querySelectorAll('[data-close="personModal"]').forEach(btn => btn.onclick = () => document.getElementById('personModal').classList.remove('open'));
-    document.querySelectorAll('[data-close="userModal"]').forEach(btn => btn.onclick = () => document.getElementById('userModal').classList.remove('open'));
-
-    document.getElementById('loginBtn').onclick = () => {
-      const username = document.getElementById('loginUsername').value.trim();
-      const password = document.getElementById('loginPassword').value;
-      const user = app.users.find(item => item.username === username && item.password === password);
-      if (!user) return alert('اسم المستخدم أو كلمة المرور غير صحيحة');
-      app.currentUser = user;
-      localStorage.setItem(CURRENT_USER_KEY, JSON.stringify(user));
-      requestBrowserPermission();
-      document.getElementById('loginPage').classList.add('hidden');
-      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-      document.getElementById('dashboardPage').classList.add('active');
-      app.activePage = 'dashboard';
-      renderAll();
-    };
-
-    document.getElementById('newPersonBtn').onclick = () => openPersonModal(null);
-    document.getElementById('savePersonBtn').onclick = () => {
-      const personData = {
-        name: document.getElementById('personName').value.trim(),
-        number: document.getElementById('personNumber').value.trim(),
-        username: document.getElementById('personUsername').value.trim(),
-        password: document.getElementById('personPassword').value,
-        phone: normalizePhoneValue(document.getElementById('personPhone').value),
-        team: document.getElementById('personTeam').value.trim(),
-        squad: document.getElementById('personSquad').value.trim(),
-        status: document.getElementById('personStatus').value,
-      };
-
-      if (!personData.name || !personData.number) {
-        alert('يرجى إدخال الاسم والرقم العسكري');
-        return;
-      }
-      if (!canModifySection('personnel')) {
-        alert('ليس لديك صلاحية لإضافة أو تعديل الأفراد');
-        return;
-      }
-
-      if (app.activeEditPersonId) {
-        app.personnel = app.personnel.map(item => item.id === app.activeEditPersonId ? { ...item, ...personData } : item);
-        saveStorage(PERSONNEL_KEY, app.personnel);
-        recordNotification('عدّل', `بيانات فرد ${personData.number}`, 'personnel', 'hr_admin');
-      } else {
-        const nextId = app.personnel.reduce((max, item) => Math.max(max, item.id || 0), 0) + 1;
-        app.personnel.unshift({ id: nextId, ...personData });
-        saveStorage(PERSONNEL_KEY, app.personnel);
-        recordNotification('أضاف', `فرد ${personData.number}`, 'personnel', 'hr_admin');
-      }
-
-      document.getElementById('personModal').classList.remove('open');
-      renderAll();
-    };
-
-    document.getElementById('newLeaveBtn').onclick = () => {
-      if (!canModifySection('leaves')) { alert('ليس لديك صلاحية إضافة الإجازات'); return; }
-      const personName = prompt('اسم الفرد أو الرقم العسكري؟');
-      if (!personName) return;
-      const type = prompt('نوع الإجازة؟ مثال: إجازة / مرضية / هروب', 'إجازة');
-      const from = prompt('تاريخ البداية yyyy-mm-dd', new Date().toISOString().slice(0,10));
-      const to = prompt('تاريخ النهاية yyyy-mm-dd (فارغ إن لم يحدد)', '');
-      const nextId = (app.leaves.reduce((max, item) => Math.max(max, item.id || 0), 0) + 1);
-      app.leaves.unshift({ id: nextId, person: personName, type: type || 'إجازة', from: from || new Date().toISOString().slice(0,10), to: to || '', status: 'active' });
-      saveStorage(LEAVES_KEY, app.leaves);
-      recordNotification('أضاف', `إجازة ${personName}`, 'leaves', 'hr_admin');
-      renderAll();
-    };
-
-    document.getElementById('markAllPresentBtn').onclick = () => {
-      if (!canModifySection('attendance')) { alert('ليس لديك صلاحية تعديل الحضور'); return; }
-      app.attendance = app.attendance.map(item => ({ ...item, status: 'حاضر' }));
-      saveStorage(ATTENDANCE_KEY, app.attendance);
-      recordNotification('عدّل', 'حضور اليوم', 'attendance', 'specialist');
-      renderAll();
-    };
-
-    document.getElementById('addDraftBtn').onclick = () => {
-      if (!canModifySection('drafts')) { alert('ليس لديك صلاحية إضافة المسودات'); return; }
-      const title = document.getElementById('draftName').value.trim();
-      if (!title) return alert('أدخل اسم الفصيلة');
-      const nextId = (app.drafts.reduce((max, item) => Math.max(max, item.id || 0), 0) + 1);
-      app.drafts.push({ id: nextId, title, count: 0, color: 'blue' });
-      saveStorage(DRAFTS_KEY, app.drafts);
-      recordNotification('أضاف', `مسودة ${title}`, 'drafts', 'financial');
-      renderAll();
-      document.getElementById('draftName').value = '';
-    };
-
-    document.getElementById('clearNotifBtn').onclick = () => {
-      app.notifications = [];
-      saveStorage(NOTIFY_KEY, app.notifications);
-      renderNotificationsBell();
-      openNotifications();
-    };
-
-    document.getElementById('saveUserBtn').onclick = () => {
-      if (app.currentUser?.role !== 'admin') { alert('فقط admin يمكنه تعديل المستخدمين'); return; }
-      const idx = app.activeEditUserIndex;
-      if (idx === null || idx === undefined) return;
-      const updated = {
-        ...app.users[idx],
-        username: document.getElementById('userUsername').value.trim(),
-        password: document.getElementById('userPassword').value,
-        phone: normalizePhoneValue(document.getElementById('userPhone').value)
-      };
-      if (!updated.username || !updated.password) {
-        alert('اسم المستخدم وكلمة المرور مطلوبان');
-        return;
-      }
-      app.users[idx] = updated;
-      saveStorage(STORAGE_KEY, app.users);
-      document.getElementById('userModal').classList.remove('open');
-      recordNotification('عدّل', `مستخدم ${updated.username}`, 'users', 'admin');
-      renderAll();
-    };
-
-    document.getElementById('clientPanelBtn')?.addEventListener('click', () => {});
-
-    document.getElementById('attendanceSearch').addEventListener('input', renderAttendance);
-    document.getElementById('attendanceSquadFilter').addEventListener('change', renderAttendance);
-    document.getElementById('attendanceDate').addEventListener('change', renderAttendance);
-    document.getElementById('personSearch').addEventListener('input', renderPersonnel);
-    document.getElementById('teamFilter').addEventListener('change', renderPersonnel);
-    document.getElementById('squadFilter').addEventListener('change', renderPersonnel);
-
-    document.querySelectorAll('.nav-btn').forEach(btn => {
-      btn.addEventListener('click', () => showPage(btn.dataset.page));
-    });
-
-    renderAll();
-    if (!app.currentUser) {
-      document.getElementById('loginPage').classList.remove('hidden');
-      document.getElementById('dashboardPage').classList.remove('active');
-    } else {
-      showPage('dashboard');
-    }
-  </script>
-</body>
-</html>
